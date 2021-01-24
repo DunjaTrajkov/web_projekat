@@ -1,0 +1,113 @@
+.zanr{
+    display: flex;
+    margin-top: 10px;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.labelaNaziv{
+    flex:1;
+    max-height: 20px;
+    margin-left: 5px;
+}
+
+.labelaMax{
+    max-height: 20px;
+    flex:1;
+    margin-left: 5px;
+}
+
+.labelaStatus{
+    flex:1;
+}
+
+.divDiskovi{
+    flex:6;
+}
+
+.disk{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border:solid black 1px;
+    min-width: 60px;
+    min-height: 50px;
+    text-align: center;
+}
+
+.musicstore{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    align-content: center;
+    border: solid black 0.5px;
+}
+
+.zanrovi{
+    display: flex;
+    flex-direction: column;
+    border-top: solid black 0.5px;
+    border-bottom: solid black 0.5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.forma{
+    display:flex;
+    flex-direction: row;
+    border-top:solid black 0.5px;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.knjigaforma
+{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.zanroviforma
+{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.dodajzanr
+{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: flex-start;
+}
+
+.radioDugmici{
+    display:flex;
+    flex-direction: column;
+}
+
+.nazivStora{
+    flex:1;
+    font-weight: bold;
+}
+
+.ostalo{
+    display:flex;
+    flex:5;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.divDiskovi{
+    display: flex;
+    flex-direction: row;
+}
+
+input {
+    text-align: right;
+}
