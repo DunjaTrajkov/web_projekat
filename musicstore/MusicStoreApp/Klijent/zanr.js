@@ -13,12 +13,7 @@ export class Zanr{
         else{
             this.maxDiskova=maxDiskova;
         }
-        if(!id){
-            this.ZanrId=1;
-        }
-        else{
-            this.ZanrId = id;
-        }
+        this.ZanrId = id;
         this.trDiskova=0;
         this.container=null;
         this.diskovi = [];
@@ -61,14 +56,14 @@ export class Zanr{
         this.container.appendChild(labelaStatus);
     }
 
-    osveziPrikaz(){
-        let diskovi=this.container.querySelectorAll(".disk");
-        for(let i=0;i<this.trDiskova;i++){
-            diskovi[i].style.backgroundColor="cyan";
-        }
-        let labela=this.container.querySelector(".labelaStatus");
-        labela.innerHTML=this.trDiskova+"/"+this.maxDiskova;
-    }
+    // osveziPrikaz(){
+    //     let diskovi=this.container.querySelectorAll(".disk");
+    //     for(let i=0;i<this.trDiskova;i++){
+    //         diskovi[i].style.backgroundColor="cyan";
+    //     }
+    //     let labela=this.container.querySelector(".labelaStatus");
+    //     labela.innerHTML=this.trDiskova+"/"+this.maxDiskova;
+    // }
 
     dodajDisk(disk)
     {

@@ -44,11 +44,10 @@ namespace musicstore.Controllers
         [HttpGet]
         [Route("PreuzmiDiskove")]
         public async Task<JsonResult> GetDisks() {
-            var zanrovi = await dbContext.Zanrovi
-                        .Include(p => p.Diskovi) 
+            var diskovi = await dbContext.Diskovi
                         .ToListAsync(); 
 
-            return new JsonResult(zanrovi);
+            return new JsonResult(diskovi);
         }
 
         [HttpPut]
@@ -83,16 +82,6 @@ namespace musicstore.Controllers
             await dbContext.SaveChangesAsync();
         }
 
-        // [HttpPut]
-        // [Route("AzurirajKolicinu2")]
-        // public async Task AzurirajKolicinu([FromBody] noviSilos) {
-        //     var silos = await dbContext.Silosi.Where(x=> x.SilosId == id).FirstOrDefaultAsync();
-        //     var ukKolicina = silos.Kolicina + kolicina;
-        //     if (silos.Kapacitet >= ukKolicina)
-        //     {
-        //         silos.Kolicina+=kolicina;
-        //         dbContext.Silosi.Update(silos);
-        //         await dbContext.SaveChangesAsync();
-        //     }
+        
     }
 }

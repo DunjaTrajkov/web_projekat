@@ -54,9 +54,9 @@ export class MusicStore{
         forma.className="forma";
         roditeljskiProstor.appendChild(forma);
 
-        let knjigaForma=document.createElement("div");
-        knjigaForma.className="knjigaforma";
-        forma.appendChild(knjigaForma);
+        let diskForma=document.createElement("div");
+        diskForma.className="diskforma";
+        forma.appendChild(diskForma);
 
         let zanroviForma=document.createElement("div");
         zanroviForma.className="zanroviforma";
@@ -66,12 +66,12 @@ export class MusicStore{
         dodajZanrForma.className="dodajzanr";
         forma.appendChild(dodajZanrForma);
 
-        this.crtajFormuKnjiga(knjigaForma);
+        this.crtajFormuDisk(diskForma);
         this.crtajFormuZanrovi(zanroviForma);
         this.crtajFormuDodajZanr(dodajZanrForma);
     }
 
-    crtajFormuKnjiga(roditeljskiProstor)
+    crtajFormuDisk(roditeljskiProstor)
     {
         let labelaNaziv = document.createElement("label");
         labelaNaziv.className="labelaNaziv";
@@ -117,16 +117,6 @@ export class MusicStore{
             divRadio.appendChild(labelaZanr);
         })
 
-        /*let brojDiskova=document.createElement("label");
-        brojDiskova.innerHTML="Broj diskova:";
-        brojDiskova.className="brojDiskova";
-        forma.appendChild(brojDiskova);
-
-        let inputBrojDiskova=document.createElement("input");
-        inputBrojDiskova.type="number";
-        inputBrojDiskova.className="inputBrojDiskova";
-        forma.appendChild(inputBrojDiskova);*/
-
         let dugme=document.createElement("button");
         dugme.innerHTML="Dodaj disk";
         dugme.className="dugme";
@@ -165,7 +155,6 @@ export class MusicStore{
 
     dodajDiskove(){
         let gde=this.container.querySelector("input[type=radio]:checked").value;
-        //let koliko=parseInt(this.container.querySelector(".inputBrojDiskova").value);
         let naziv = this.container.querySelector("input[type=text]").value;
         let cena = this.container.querySelector(".inputCena").value;
 
@@ -191,7 +180,6 @@ export class MusicStore{
         let maxD = forma.querySelector("input[type=number]").value;
 
         this.dodaj(new Zanr(naziv,maxD));
-        let zanrovi = this.container.querySelector(".zanrovi");
         this.container.innerHTML="";
         this.listaZanrova.forEach(zanr => {
             zanr.container=null;
