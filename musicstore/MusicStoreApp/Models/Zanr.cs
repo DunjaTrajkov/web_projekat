@@ -10,6 +10,7 @@ namespace musicstore.Models
         public int Id_Zanra { get; set; }
         public string Naziv { get; set; }
         public int MaxDiskova { get; set; }
+        public int trDiskova { get; set;}
         public List<Disk> Diskovi { get; set; }
         [JsonIgnore]
         public MusicStore MusicStore { get; set; }

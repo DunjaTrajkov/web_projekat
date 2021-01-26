@@ -9,6 +9,7 @@
     flex:1;
     max-height: 20px;
     margin-left: 5px;
+    margin-right: 5px;
 }
 
 .labelaMax{
@@ -22,6 +23,9 @@
 }
 
 .divDiskovi{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     flex:6;
 }
 
@@ -30,7 +34,7 @@
     flex-direction: column;
     justify-content: center;
     border:solid black 1px;
-    min-width: 60px;
+    min-width: 50px;
     min-height: 50px;
     text-align: center;
 }
@@ -51,38 +55,40 @@
     border-bottom: solid black 0.5px;
     margin-top: 15px;
     margin-bottom: 15px;
+    flex: 4;
 }
 
 .forma{
     display:flex;
     flex-direction: row;
-    border-top:solid black 0.5px;
-    flex-grow: 1;
-    justify-content: space-between;
+    flex: 1;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding-bottom: 20px;
 }
 
 .diskforma
 {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
     justify-content: space-between;
+    min-width: 250px;
 }
 
 .zanroviforma
 {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
     justify-content: space-between;
+    min-width: 250px;
 }
 
 .dodajzanr
 {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
-    justify-content: flex-start;
+    justify-content: space-between;
+    min-width: 250px;
 }
 
 .radioDugmici{

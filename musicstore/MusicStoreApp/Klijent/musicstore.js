@@ -73,6 +73,26 @@ export class MusicStore{
 
     crtajFormuDisk(roditeljskiProstor)
     {
+        let labelaPostojeci = document.createElement("label");
+        labelaPostojeci.innerHTML="Izaberite postojeci disk";
+        labelaPostojeci.className="labelaNaziv";
+        roditeljskiProstor.appendChild(labelaPostojeci);
+
+        let selection = document.createElement("select");
+        selection.className="selectDisk";
+        selection.name="disk";
+        
+        this.listaZanrova.forEach(zanr => {
+            zanr.diskovi.forEach(disk => {
+                let option = document.createElement("option");
+                option.innerHTML=disk.naziv;
+                option.value=disk.DiskId;
+                selection.appendChild(option);
+            })
+        })
+        selection.onchange=()=>this.prikaziDisk();
+        roditeljskiProstor.appendChild(selection);
+
         let labelaNaziv = document.createElement("label");
         labelaNaziv.className="labelaNaziv";
         labelaNaziv.innerHTML="Naziv diska"
@@ -122,6 +142,18 @@ export class MusicStore{
         dugme.className="dugme";
         dugme.onclick=()=>this.dodajDiskove();
         roditeljskiProstor.appendChild(dugme);
+
+        let dugme2=document.createElement("button");
+        dugme2.innerHTML="Izmeni disk";
+        dugme2.className="dugme";
+        dugme2.onclick=()=>this.izmeniDisk();
+        roditeljskiProstor.appendChild(dugme2);
+
+        let dugme3=document.createElement("button");
+        dugme3.innerHTML="Izbriši disk";
+        dugme3.className="dugme";
+        dugme3.onclick=()=>this.izbrisiDisk();
+        roditeljskiProstor.appendChild(dugme3);
     }
 
     crtajFormuDodajZanr(roditeljskiProstor)
@@ -159,18 +191,51 @@ export class MusicStore{
         let cena = this.container.querySelector(".inputCena").value;
 
         let disk = new Disk(naziv,cena);
-        console.log(disk);
 
         if(this.listaZanrova[gde].trDiskova+1<=this.listaZanrova[gde].maxDiskova)
         {
             this.listaZanrova[gde].trDiskova+=1;
             this.listaZanrova[gde].dodajDisk(disk);
-            this.listaZanrova[gde].container.innerHTML="";
-            this.listaZanrova[gde].crtajZanr();
+            // this.listaZanrova[gde].container.innerHTML="";
+            // this.listaZanrova[gde].crtajZanr();
+
+            fetch("https://localhost:5001/MusicStore/DodajDisk/"+naziv+"/"+cena+"/"+this.listaZanrova[gde].ZanrId, {
+                method: "PUT"
+            });
+            location.reload();
+            location.reload();
         }
         else{
             alert("Nema dovoljno mesta!");
         }
+    }
+
+    izmeniDisk()
+    {
+        let gde=this.container.querySelector("input[type=radio]:checked").value;
+        let naziv = this.container.querySelector("input[type=text]").value;
+        let cena = this.container.querySelector(".inputCena").value;
+        let id = this.container.querySelector("select").value;
+
+        let disk = new Disk(naziv,cena,id);
+
+        fetch("https://localhost:5001/MusicStore/IzmeniDisk/"+id+"/"+naziv+"/"+cena+"/"+this.listaZanrova[gde].ZanrId, {
+                method: "PUT"
+            });
+        
+        location.reload();
+        location.reload();
+    }
+
+    izbrisiDisk()
+    {
+        let id = this.container.querySelector("select").value;
+
+        fetch("https://localhost:5001/MusicStore/IzbrisiDisk/"+id, {
+            method: "DELETE"
+        });
+
+        location.reload();
     }
 
     dodajZanr()
@@ -183,7 +248,38 @@ export class MusicStore{
         this.container.innerHTML="";
         this.listaZanrova.forEach(zanr => {
             zanr.container=null;
-            console.log(zanr.container);
+        });
+        this.crtajMusicStore();
+    }
+
+    prikaziDisk()
+    {
+        let disk_id = this.container.querySelector("select").value;
+        let naziv, cena, zanr_id;
+        this.listaZanrova.forEach(zanr => {
+            zanr.diskovi.forEach(disk => {
+                if(disk.DiskId==disk_id)
+                {
+                    naziv=disk.naziv;
+                    cena=disk.cena;
+                    zanr_id=zanr.ZanrId-1;
+                }
+            })
+        })
+
+        let inputNaziv = this.container.querySelector(".diskforma").querySelector("input[type=text]");
+        inputNaziv.value = naziv;
+        let inputCena = this.container.querySelector(".diskforma").querySelector("input[type=number]");
+        inputCena.value = cena;
+        let radioZanr = this.container.querySelector(".radioDugmici").querySelector("input[type=radio][value=\""+zanr_id+"\"]");
+        radioZanr.checked = true;
+    }
+
+    osveziPrikaz()
+    {
+        this.container.innerHTML="";
+        this.listaZanrova.forEach(zanr => {
+            zanr.container=null;
         });
         this.crtajMusicStore();
     }

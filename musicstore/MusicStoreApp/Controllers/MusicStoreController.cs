@@ -25,41 +25,24 @@ namespace musicstore.Controllers
         public async Task<JsonResult> GetStores()
         {
             var stores = await dbContext.Stores
-                        .Include(p => p.Zanrovi)
+                        .Include(z => z.Zanrovi)
+                        .ThenInclude(d => d.Diskovi)
                         .ToListAsync();
 
             return new JsonResult(stores);
         }
 
-        [HttpGet]
-        [Route("PreuzmiZanrove")]
-        public async Task<JsonResult> GetZanrs() {
-            var zanrovi = await dbContext.Zanrovi
-                        .Include(p => p.Diskovi) 
-                        .ToListAsync(); 
-
-            return new JsonResult(zanrovi);
-        }
-
-        [HttpGet]
-        [Route("PreuzmiDiskove")]
-        public async Task<JsonResult> GetDisks() {
-            var diskovi = await dbContext.Diskovi
-                        .ToListAsync(); 
-
-            return new JsonResult(diskovi);
-        }
-
         [HttpPut]
-        [Route ("DodajDisk/{id_Diska}/{Naziv}/{Cena}/{id_Zanra}")]
-        public async Task DodajDisk(int id_Diska, string Naziv, int Cena, int id_Zanra)
+        [Route ("DodajDisk/{Naziv}/{Cena}/{id_Zanra}")]
+        public async Task DodajDisk(/* int id_Diska,  */string Naziv, int Cena, int id_Zanra)
         {
             Disk disk = new Disk();
-            disk.Id_Diska=id_Diska;
+
+            // disk.Id_Diska=id_Diska;
             disk.Naziv=Naziv;
             disk.Cena=Cena;
-            
-            var zanr = dbContext.Zanrovi.Where(x => x.Id_Zanra == id_Zanra).FirstOrDefault();
+            var zanr = await dbContext.Zanrovi.Where(x => x.Id_Zanra == id_Zanra).FirstOrDefaultAsync();
+            zanr.trDiskova++;
             disk.Zanr = zanr;
 
             dbContext.Diskovi.Add(disk);
@@ -75,10 +58,30 @@ namespace musicstore.Controllers
             disk.Naziv=Naziv;
             disk.Cena=Cena;
             
-            var zanr = await dbContext.Zanrovi.Where(x => x.Id_Zanra == id_Zanra).FirstOrDefaultAsync();
-            disk.Zanr = zanr;
+            var zanrnew = await dbContext.Zanrovi.Where(x => x.Id_Zanra == id_Zanra).FirstOrDefaultAsync();
+            var zanroldid = await dbContext.Diskovi.Where(x=>x.Id_Diska==id_Diska)
+                                                 .Select(d => d.Zanr.Id_Zanra)
+                                                 .FirstOrDefaultAsync();
+            var zanrold = await dbContext.Zanrovi.Where(x => x.Id_Zanra==zanroldid).FirstOrDefaultAsync();
 
-            dbContext.Diskovi.Add(disk);
+            zanrold.trDiskova--;
+            zanrnew.trDiskova++;
+            disk.Zanr = zanrnew;
+
+            await dbContext.SaveChangesAsync();
+        }
+
+        [HttpDelete]
+        [Route ("IzbrisiDisk/{id_Diska}")]
+        public async Task IzbrisiDisk(int id_Diska)
+        {
+            var disk = await dbContext.Diskovi.Where(x=>x.Id_Diska==id_Diska).FirstOrDefaultAsync();
+            int zanrID = await dbContext.Diskovi.Where(x=>x.Id_Diska==id_Diska).Select(d => d.Zanr.Id_Zanra).FirstOrDefaultAsync();
+            var zanr = await dbContext.Zanrovi.Where(x => x.Id_Zanra==zanrID).FirstOrDefaultAsync();
+
+            zanr.trDiskova--;
+
+            dbContext.Diskovi.Remove(disk);
             await dbContext.SaveChangesAsync();
         }
 

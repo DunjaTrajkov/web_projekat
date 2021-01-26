@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using musicstore.Models;
 
 namespace musicstore.Migrations
 {
     [DbContext(typeof(ContextKlasa))]
-    partial class ContextKlasaModelSnapshot : ModelSnapshot
+    [Migration("20210125110651_V4")]
+    partial class V4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -72,9 +74,6 @@ namespace musicstore.Migrations
 
                     b.Property<string>("Naziv")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("trDiskova")
-                        .HasColumnType("int");
 
                     b.HasKey("Id_Zanra");
 

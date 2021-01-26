@@ -1,6 +1,6 @@
 export class Zanr{
 
-    constructor(naziv,maxDiskova, id){
+    constructor(naziv,maxDiskova, trDiskova, id){
         if(!naziv){
             this.naziv="";
         }
@@ -13,8 +13,13 @@ export class Zanr{
         else{
             this.maxDiskova=maxDiskova;
         }
+        if(!trDiskova){
+            this.trDiskova=0;
+        }
+        else{
+            this.trDiskova=trDiskova;
+        }
         this.ZanrId = id;
-        this.trDiskova=0;
         this.container=null;
         this.diskovi = [];
     }
@@ -56,14 +61,6 @@ export class Zanr{
         this.container.appendChild(labelaStatus);
     }
 
-    // osveziPrikaz(){
-    //     let diskovi=this.container.querySelectorAll(".disk");
-    //     for(let i=0;i<this.trDiskova;i++){
-    //         diskovi[i].style.backgroundColor="cyan";
-    //     }
-    //     let labela=this.container.querySelector(".labelaStatus");
-    //     labela.innerHTML=this.trDiskova+"/"+this.maxDiskova;
-    // }
 
     dodajDisk(disk)
     {

@@ -4449,7 +4449,6 @@
       "path": "system.runtime.serialization.primitives/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -5505,29 +5504,30 @@
     "net5.0": [
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 5.0.1",
       "Microsoft.AspNetCore.Authentication.OpenIdConnect >= 5.0.1",
+      "Microsoft.EntityFrameworkCore >= 5.0.2",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.2",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.2",
       "Swashbuckle.AspNetCore >= 5.6.3"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\PC1\\.nuget\\packages\\": {},
+    "C:\\Users\\PC2\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PC1\\Desktop\\Ostalo\\Web\\WEB\\web6\\musicstore\\MusicStoreApp\\musicstore.csproj",
+      "projectUniqueName": "E:\\Fakultet\\5. semestar\\musicstore\\MusicStoreApp\\musicstore.csproj",
       "projectName": "musicstore",
-      "projectPath": "C:\\Users\\PC1\\Desktop\\Ostalo\\Web\\WEB\\web6\\musicstore\\MusicStoreApp\\musicstore.csproj",
-      "packagesPath": "C:\\Users\\PC1\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\PC1\\Desktop\\Ostalo\\Web\\WEB\\web6\\musicstore\\MusicStoreApp\\obj\\",
+      "projectPath": "E:\\Fakultet\\5. semestar\\musicstore\\MusicStoreApp\\musicstore.csproj",
+      "packagesPath": "C:\\Users\\PC2\\.nuget\\packages\\",
+      "outputPath": "E:\\Fakultet\\5. semestar\\musicstore\\MusicStoreApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\PC1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\PC2\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5566,6 +5566,10 @@
             "noWarn": [
               "NU1605"
             ]
+          },
+          "Microsoft.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "[5.0.2, )"
           },
           "Microsoft.EntityFrameworkCore.Design": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",

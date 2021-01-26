@@ -24,6 +24,8 @@ export class Disk
 
     crtajDisk(roditeljskiProstor){
 
+        console.log(this);
+        
         this.container=document.createElement("div");
         this.container.className="disk";
         roditeljskiProstor.appendChild(this.container);
