@@ -40,7 +40,7 @@ export class Disk
         labelaCena.className="labelaCena";
         this.container.appendChild(labelaCena);
 
-        this.container.style.backgroundColor="lime";
+        this.container.style.backgroundColor="greenyellow";
     }
 
 }

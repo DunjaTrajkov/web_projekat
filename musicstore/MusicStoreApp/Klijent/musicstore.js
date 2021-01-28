@@ -194,16 +194,16 @@ export class MusicStore{
 
         if(this.listaZanrova[gde].trDiskova+1<=this.listaZanrova[gde].maxDiskova)
         {
-            this.listaZanrova[gde].trDiskova+=1;
-            this.listaZanrova[gde].dodajDisk(disk);
+            //this.listaZanrova[gde].trDiskova+=1;
+            //this.listaZanrova[gde].dodajDisk(disk);
             // this.listaZanrova[gde].container.innerHTML="";
             // this.listaZanrova[gde].crtajZanr();
 
             fetch("https://localhost:5001/MusicStore/DodajDisk/"+naziv+"/"+cena+"/"+this.listaZanrova[gde].ZanrId, {
                 method: "PUT"
             });
-            location.reload();
-            location.reload();
+
+            setTimeout(() => {location.reload()}, 2);
         }
         else{
             alert("Nema dovoljno mesta!");
@@ -217,14 +217,11 @@ export class MusicStore{
         let cena = this.container.querySelector(".inputCena").value;
         let id = this.container.querySelector("select").value;
 
-        let disk = new Disk(naziv,cena,id);
-
         fetch("https://localhost:5001/MusicStore/IzmeniDisk/"+id+"/"+naziv+"/"+cena+"/"+this.listaZanrova[gde].ZanrId, {
-                method: "PUT"
+                method: "POST"
             });
         
-        location.reload();
-        location.reload();
+        setTimeout(() => {location.reload()}, 2);
     }
 
     izbrisiDisk()
@@ -234,8 +231,7 @@ export class MusicStore{
         fetch("https://localhost:5001/MusicStore/IzbrisiDisk/"+id, {
             method: "DELETE"
         });
-
-        location.reload();
+        setTimeout(() => {location.reload()}, 2);
     }
 
     dodajZanr()

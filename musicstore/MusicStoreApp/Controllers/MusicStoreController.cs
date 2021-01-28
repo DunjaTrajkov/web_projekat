@@ -49,7 +49,7 @@ namespace musicstore.Controllers
             await dbContext.SaveChangesAsync();
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route ("IzmeniDisk/{id_Diska}/{Naziv}/{Cena}/{id_Zanra}")]
         public async Task IzmeniDisk(int id_Diska, string Naziv, int Cena, int id_Zanra)
         {
